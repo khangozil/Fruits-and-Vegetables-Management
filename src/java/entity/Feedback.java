@@ -5,25 +5,28 @@
  */
 package entity;
 
+import java.sql.Date;
+import java.sql.Time;
 
 /**
  *
  * @author ADMIN
  */
 public class Feedback {
-
     private String fb_id;
     private String fb_content;
-    private String fb_date;
+    private Date  fb_date;
+    private Time fb_time;
     private String acc_id;
 
     public Feedback() {
     }
 
-    public Feedback(String fb_id, String fb_content, String fb_date, String acc_id) {
+    public Feedback(String fb_id, String fb_content, Date fb_date, Time fb_time, String acc_id) {
         this.fb_id = fb_id;
         this.fb_content = fb_content;
         this.fb_date = fb_date;
+        this.fb_time = fb_time;
         this.acc_id = acc_id;
     }
 
@@ -43,12 +46,20 @@ public class Feedback {
         this.fb_content = fb_content;
     }
 
-    public String getFb_date() {
+    public Date getFb_date() {
         return fb_date;
     }
 
-    public void setFb_date(String fb_date) {
+    public void setFb_date(Date fb_date) {
         this.fb_date = fb_date;
+    }
+
+    public Time getFb_time() {
+        return fb_time;
+    }
+
+    public void setFb_time(Time fb_time) {
+        this.fb_time = fb_time;
     }
 
     public String getAcc_id() {
@@ -59,4 +70,12 @@ public class Feedback {
         this.acc_id = acc_id;
     }
 
+    @Override
+    public String toString() {
+        return "Feedback{" + "fb_id=" + fb_id + ", fb_content=" + fb_content + ", fb_date=" + fb_date + ", fb_time=" + fb_time + ", acc_id=" + acc_id + '}';
+    }
+    
+    
+    
+    
 }

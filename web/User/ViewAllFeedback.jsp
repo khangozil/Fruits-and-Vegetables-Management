@@ -57,7 +57,7 @@
                             </li>
                             
                             
-                            <li><a href="${pageContext.request.contextPath}/viewAllFeedback">Đánh giá</a>
+                            <li><a href="${pageContext.request.contextPath}/viewFeedback">Đánh giá</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="User/GiveFeedback.jsp">Đánh giá</a></li>
                                     <li><a href="${pageContext.request.contextPath}/viewFeedback">Xem đánh giá của bạn</a></li>
@@ -95,29 +95,17 @@
                                         <th>Giờ</th>
                                         <th>Tên Tài Khoản </th>
                                         <th></th>
-                                        <th>
-                                            Cập Nhật
-                                        </th>
-                                        <th>
-                                            Xóa
-                                        </th>
                                     </tr>
                                 </thead>
-                                <c:forEach items="${listF1}" var="o">
+                                <c:forEach items="${listF}" var="p">
                                     <tbody>
                                         <tr>
-                                            <td>${o.fb_id}</td>
-                                            <td>${o.fb_content}</td>
-                                            <td>${o.fb_date}</td>
-                                            <td>${o.fb_time}</td>
-                                            <td>${o.acc_id}</td>
+                                            <td>${p.fb_id}</td>
+                                            <td>${p.fb_content}</td>
+                                            <td>${p.fb_date}</td>
+                                            <td>${p.fb_time}</td>
+                                            <td>${p.acc_id}</td>
                                             <td></td>
-                                            <td>
-                                                <a href="update?fbid=${o.fb_id}"> Cập Nhật </a>
-                                            </td>
-                                            <td>
-                                                <a href="delete?fid=${o.fb_id}">Xóa</a>
-                                            </td>
                                         </tr>
                                     </tbody> </c:forEach>
                             </table>

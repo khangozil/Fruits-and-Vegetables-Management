@@ -6,23 +6,19 @@
 package controller.User;
 
 import DAO.FeedbackDAO;
-import entity.Account;
-import entity.Feedback;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Nam Hieu
+ * @author DUY KHANG
  */
-@WebServlet(name = "ViewFeedbackController", urlPatterns = {"/viewFeedback"})
-public class ViewFeedbackController extends HttpServlet {
+@WebServlet(name = "DeleteFeedback", urlPatterns = {"/delete"})
+public class DeleteFeedback extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,22 +32,6 @@ public class ViewFeedbackController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-//        FeedbackDAO dao = new FeedbackDAO();
-//
-//        List<Feedback> listF = dao.getAllFeedbacks();
-//
-//        request.setAttribute("listF", listF);
-//        request.getRequestDispatcher("User/ViewFeedback.jsp").forward(request, response);
-
-
-        HttpSession session = request.getSession();
-        Account a = (Account) session.getAttribute("acc");
-        String id = a.getAcc_id();
-        FeedbackDAO dao = new FeedbackDAO();
-        List<Feedback> listF1 = dao.getFeedbackByAccID(id);
-        
-        request.setAttribute("listF1", listF1);
-        request.getRequestDispatcher("User/ViewFeedback.jsp").forward(request, response);
 
     }
 
@@ -67,7 +47,11 @@ public class ViewFeedbackController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        String fid = request.getParameter("fid");
+        FeedbackDAO dao = new FeedbackDAO();
+        dao.deleteFeedback(fid);
+        response.sendRedirect("viewFeedback");
     }
 
     /**

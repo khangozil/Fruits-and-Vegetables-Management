@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -9,7 +8,7 @@
         <meta name="keywords" content="Ogani, unica, creative, html">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Rau củ tươi G7</title>
+        <title>Ogani | Template</title>
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -41,13 +40,14 @@
                         <ul>
                             <li class="active"><a href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
 
-                            <li><a href="${pageContext.request.contextPath}/User/Profile.jsp">Tài khoản</a>
+                            <li><a href="Profile.jsp">Tài khoản</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="${pageContext.request.contextPath}/User/ChangeProfile.jsp">Thay đổi thông tin</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/User/ChangePassword.jsp">Thay đổi mật khẩu</a></li>
+                                    <li><a href="ChangeProfile.jsp">Thay đổi thông tin</a></li>
+                                    <li><a href="ChangePassword.jsp">Thay đổi mật khẩu</a></li>
                                     <!--<li><a href="#">Tình trạng đơn hàng</a></li>-->
                                 </ul>
                             </li>
+
                             <li><a href="#">Đơn hàng</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="#">Tình trạng đơn hàng</a></li>
@@ -55,14 +55,15 @@
                                     <!--<li><a href="#">Tình trạng đơn hàng</a></li>-->
                                 </ul>
                             </li>
-                            
-                            
-                            <li><a href="${pageContext.request.contextPath}/viewAllFeedback">Đánh giá</a>
+
+                            <li><a href="${pageContext.request.contextPath}/viewFeedback">Đánh giá</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="User/GiveFeedback.jsp">Đánh giá</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/viewFeedback">Xem đánh giá của bạn</a></li>
+                                    <li><a href="GiveFeedback.jsp">Đánh giá</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/viewFeedback">Xem đánh giá</a></li>
                                 </ul>
                             </li>
+
+
 
                         </ul>
                     </nav>
@@ -72,7 +73,7 @@
                     <div class="header__cart">
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>#</span></a></li>
-                            <li><a href="User/Cart.jsp"><i class="fa fa-shopping-bag"></i> <span>#</span></a></li>
+                            <li><a href="Cart.jsp"><i class="fa fa-shopping-bag"></i> <span>#</span></a></li>
                         </ul>
                         <!--<div class="header__cart__price">item: <span>$150.00</span></div>-->
                     </div>
@@ -80,57 +81,36 @@
             </div>
         </div>
 
-        <!-- Shoping Cart Section Begin -->
-        <section class="shoping-cart spad">
+        <!-- Checkout Section Begin -->
+        <section class="checkout spad">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="shoping__cart__table">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Bình luận</th>
-                                        <th>Ngày</th>
-                                        <th>Giờ</th>
-                                        <th>Tên Tài Khoản </th>
-                                        <th></th>
-                                        <th>
-                                            Cập Nhật
-                                        </th>
-                                        <th>
-                                            Xóa
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <c:forEach items="${listF1}" var="o">
-                                    <tbody>
-                                        <tr>
-                                            <td>${o.fb_id}</td>
-                                            <td>${o.fb_content}</td>
-                                            <td>${o.fb_date}</td>
-                                            <td>${o.fb_time}</td>
-                                            <td>${o.acc_id}</td>
-                                            <td></td>
-                                            <td>
-                                                <a href="update?fbid=${o.fb_id}"> Cập Nhật </a>
-                                            </td>
-                                            <td>
-                                                <a href="delete?fid=${o.fb_id}">Xóa</a>
-                                            </td>
-                                        </tr>
-                                    </tbody> </c:forEach>
-                            </table>
-                            <div>
-                                <!--<a href="ChangeProfile.jsp" class="primary-btn cart-btn cart-btn-left"><span class="icon_loading"></span>
-                                    Cập nhật thông tin</a>-->
+                <div class="checkout__form">
+                    <h4>Cập nhật đánh giá của bạn</h4>
+                    <p class="text-danger">${mess}</p>
+                    <form action="${pageContext.request.contextPath}/update" method="post">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-6">
+                                <div class="checkout__input">
+                                    <a> Nội dung</a>
+                                    <input  type="text" name="content"  value="${fb.fb_content}" required="">
+                                    <a> Ngày đánh giá</a>
+                                    <input  type="text" name="date" value="${fb.fb_date}" readonly="">
+                                    <a> Thời gian đánh giá </a>
+                                    <input  type="text" name="time" value="${fb.fb_time}" readonly="">
+                                    <a> ID </a>
+                                    <input  type="text" name="fid"  value="${fb.fb_id}" readonly="">
+
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div>
+                            <button type="submit" class="primary-btn cart-btn cart-btn-left">Cập nhật</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
-        <!-- Shoping Cart Section End -->
+        <!-- Checkout Section End -->
 
         <!-- Js Plugins -->
         <script src="js/jquery-3.3.1.min.js"></script>

@@ -7,6 +7,7 @@ package controller.User;
 
 import DAO.FeedbackDAO;
 import entity.Account;
+import entity.Feedback;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 
+ * @author Quynhh Nhuu
  */
 @WebServlet(name = "GiveFeedbackController", urlPatterns = {"/giveFeedback"})
 public class GiveFeedbackController extends HttpServlet {
@@ -61,6 +62,7 @@ public class GiveFeedbackController extends HttpServlet {
 
         FeedbackDAO dao = new FeedbackDAO();
 
+//        dao.addFeedback("fb02", "rau ngon vãi", date, time, "user01");
         dao.addFeedback(fb_id, feedback, date, time, username);
 
         request.setAttribute("mess", "Gửi đánh giá thành công!");

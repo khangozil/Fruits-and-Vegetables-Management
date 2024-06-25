@@ -6,7 +6,6 @@
 package controller.User;
 
 import DAO.FeedbackDAO;
-import entity.Account;
 import entity.Feedback;
 import java.io.IOException;
 import java.util.List;
@@ -15,14 +14,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Nam Hieu
+ * @author DUY KHANG
  */
-@WebServlet(name = "ViewFeedbackController", urlPatterns = {"/viewFeedback"})
-public class ViewFeedbackController extends HttpServlet {
+@WebServlet(name = "ViewAllFeedback", urlPatterns = {"/viewAllFeedback"})
+public class ViewAllFeedback extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,24 +34,13 @@ public class ViewFeedbackController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-//        FeedbackDAO dao = new FeedbackDAO();
-//
-//        List<Feedback> listF = dao.getAllFeedbacks();
-//
-//        request.setAttribute("listF", listF);
-//        request.getRequestDispatcher("User/ViewFeedback.jsp").forward(request, response);
-
-
-        HttpSession session = request.getSession();
-        Account a = (Account) session.getAttribute("acc");
-        String id = a.getAcc_id();
         FeedbackDAO dao = new FeedbackDAO();
-        List<Feedback> listF1 = dao.getFeedbackByAccID(id);
+        List<Feedback> listF1 = dao.getAllFeedbacks();
         
         request.setAttribute("listF1", listF1);
-        request.getRequestDispatcher("User/ViewFeedback.jsp").forward(request, response);
-
-    }
+        request.getRequestDispatcher("User/ViewAllFeedback.jsp").forward(request, response);
+        }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
